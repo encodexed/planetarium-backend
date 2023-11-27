@@ -16,4 +16,10 @@ public class StarService {
   public List<Star> getAll() {
     return this.starRepository.findAll();
   }
+
+  public Star createStar(StarCreateDTO data) {
+    Star newStar = new Star(data.getName(), data.getStellarClass());
+    return this.starRepository.save(newStar);
+  }
+
 }
