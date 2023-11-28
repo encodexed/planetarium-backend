@@ -3,7 +3,7 @@
 -- Consider that stars and planets data may be missing/null as a measure of showing that the entity exists but hasn't been fully explored
 CREATE TABLE `stars` (
   `id` integer PRIMARY KEY,
-  `name` varchar(255) not null,
+  `name` varchar(255) not null unique,
   `stellar_class` enum('O', 'B', 'A', 'F', 'G', 'K', 'M', 'OTHER') not null,
   `coordinateX` integer,
   `coordinateY` integer,

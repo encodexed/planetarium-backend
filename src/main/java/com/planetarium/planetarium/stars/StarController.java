@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
+// import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/stars")
@@ -26,8 +26,13 @@ public class StarController {
     return new ResponseEntity<>(allStars, HttpStatus.OK);
   }
 
+  @GetMapping("/hello")
+  public String hello() {
+    return "hello";
+  }
+
   @PostMapping
-  public ResponseEntity<Star> createStar(@Valid @RequestBody StarCreateDTO data) {
+  public ResponseEntity<Star> createStar(@RequestBody StarCreateDTO data) {
     Star newStar = this.starService.createStar(data);
     return new ResponseEntity<Star>(newStar, HttpStatus.CREATED);
   }
