@@ -17,6 +17,9 @@ public class SecurityConfig {
   @Autowired
   private JwtAuthFilter jwtAuthFilter;
 
+  @Autowired
+  private CustomAuthExceptionHandler customAuthExceptionHandler;
+
   // This code was pasted from the spring security docs/github and is a
   // customisation of the default
   @Bean
@@ -32,6 +35,8 @@ public class SecurityConfig {
     // again
     http
         .csrf(CsrfConfigurer::disable)
+        // will help display meaningful error messages
+        .exceptionHandling((exception -> exception.authenticationEntryPoint(customAuthExceptionHandler)))
         .authorizeHttpRequests((requests) -> requests
             // using /auth/** can give full access to auth domain
             .requestMatchers("/auth/register").permitAll()
