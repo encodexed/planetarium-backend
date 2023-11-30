@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.planetarium.planetarium.jwt.JwToken;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
@@ -23,7 +25,7 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<JwToken> login(@RequestBody LoginDTO data) {
+  public ResponseEntity<JwToken> login(@Valid @RequestBody LoginDTO data) {
     return new ResponseEntity<>(this.authService.login(data), HttpStatus.OK);
   }
 
