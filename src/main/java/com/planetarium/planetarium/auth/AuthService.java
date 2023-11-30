@@ -37,7 +37,6 @@ public class AuthService {
     User newUser = this.userService.create(data);
 
     String token = this.jwtService.generateToken(newUser);
-    System.out.println("TOKEN: " + token);
     return new JwToken(token);
   }
 

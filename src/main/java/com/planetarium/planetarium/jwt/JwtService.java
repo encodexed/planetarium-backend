@@ -17,7 +17,6 @@ public class JwtService {
 
   public String generateToken(User user) {
     String userId = Long.toString(user.getId());
-    System.out.println("\n\nuserId: " + userId);
 
     return Jwts
         .builder()
