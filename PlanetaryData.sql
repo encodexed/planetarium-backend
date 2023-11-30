@@ -2,7 +2,7 @@
 
 -- Consider that stars and planets data may be missing/null as a measure of showing that the entity exists but hasn't been fully explored
 CREATE TABLE `stars` (
-  `id` integer PRIMARY KEY,
+  `id` bigint PRIMARY KEY,
   `name` varchar(255) not null unique,
   `stellar_class` enum('O', 'B', 'A', 'F', 'G', 'K', 'M', 'OTHER') not null,
   `coordinateX` integer,
@@ -21,8 +21,14 @@ CREATE TABLE `stars` (
   `first_colonised` datetime
 );
 
+CREATE TABLE `users` (
+  `id` bigint PRIMARY KEY,
+  `username` varchar(255) not null unique,
+  `email` varchar(255) not null unique
+)
+
 CREATE TABLE `planets` (
-  `id` integer PRIMARY KEY,
+  `id` bigint PRIMARY KEY,
   `orbits_star_id` integer,
   `isMoon` boolean,
   `orbits_planet_id` integer,
@@ -40,7 +46,7 @@ CREATE TABLE `planets` (
 );
 
 CREATE TABLE `planet_resources` (
-  `id` integer PRIMARY KEY,
+  `id` bigint PRIMARY KEY,
   `planet_id` integer,
   `resource_id` integer
 );

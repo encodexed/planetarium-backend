@@ -22,4 +22,9 @@ public class AuthController {
     return new ResponseEntity<>(this.authService.register(data), HttpStatus.CREATED);
   }
 
+  @PostMapping("/login")
+  public ResponseEntity<JwToken> login(@RequestBody LoginDTO data) {
+    return new ResponseEntity<>(this.authService.login(data), HttpStatus.OK);
+  }
+
 }

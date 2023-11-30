@@ -26,8 +26,13 @@ public class StarController {
     return new ResponseEntity<>(allStars, HttpStatus.OK);
   }
 
-  @GetMapping("/hello")
-  public String hello() {
+  @GetMapping("/helloPublic")
+  public String helloPublic() {
+    return "hello";
+  }
+
+  @GetMapping("/helloPrivate")
+  private String helloPrivate() {
     return "hello";
   }
 

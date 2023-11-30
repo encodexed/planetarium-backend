@@ -1,6 +1,8 @@
 package com.planetarium.planetarium.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ public class AuthService {
   @Autowired
   private JwtService jwtService;
 
+  @Autowired
+  private AuthenticationManager authenticationManager;
+
   public JwToken register(RegisterDTO data) {
     // Overwrite plain text password with encoded password
     String encodedPassword = passwordEncoder.encode(data.getPassword());
@@ -36,4 +41,18 @@ public class AuthService {
     return new JwToken(token);
   }
 
+  public JwToken login(LoginDTO data) {
+    UsernamePasswordAuthenticationToken userPasswordToken = new UsernamePasswordAuthenticationToken(data.getUsername(),
+        data.getPassword());
+
+    authenticationManager.authenticate(userPasswordToken);
+
+    User user = this.userService.getByUsername(data.getUsername());
+
+    if (user == null) {
+      return null;
+    }
+
+    return new JwToken(this.jwtService.generateToken(user));
+  }
 }

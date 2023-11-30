@@ -5,12 +5,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-// * Need to add validation later
-public class RegisterDTO {
+public class LoginDTO {
 
   private String username;
-
-  private String email;
 
   private String password;
 }

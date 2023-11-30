@@ -1,14 +1,21 @@
 package com.planetarium.planetarium.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.planetarium.planetarium.jwt.JwtAuthFilter;
 
 @Configuration
 public class SecurityConfig {
+
+  @Autowired
+  private JwtAuthFilter jwtAuthFilter;
 
   // This code was pasted from the spring security docs/github and is a
   // customisation of the default
@@ -26,8 +33,11 @@ public class SecurityConfig {
     http
         .csrf(CsrfConfigurer::disable)
         .authorizeHttpRequests((requests) -> requests
+            // using /auth/** can give full access to auth domain
             .requestMatchers("/auth/register").permitAll()
+            .requestMatchers("/auth/login").permitAll()
             .anyRequest().authenticated())
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
     return http.build();
