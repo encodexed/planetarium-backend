@@ -8,5 +8,5 @@ public enum StellarClass {
   G,
   K,
   M,
-  OTHER
+  OTHER,
 }

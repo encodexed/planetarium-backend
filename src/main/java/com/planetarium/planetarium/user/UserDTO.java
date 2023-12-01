@@ -1,5 +1,3 @@
 package com.planetarium.planetarium.user;
 
-public class UserDTO {
-
-}
+public class UserDTO {}

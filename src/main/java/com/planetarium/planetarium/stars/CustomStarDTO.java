@@ -1,8 +1,7 @@
 package com.planetarium.planetarium.stars;
 
-import java.util.Date;
-
 import jakarta.validation.constraints.NotBlank;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,18 +15,18 @@ public class CustomStarDTO {
   private String name;
 
   @NotBlank
-  private StellarClass stellarClass;
+  private StellarClass stellar_class;
 
   @NotBlank
-  private int coordinateX;
+  private int coordinate_x;
 
   @NotBlank
-  private int coordinateY;
+  private int coordinate_y;
 
   @NotBlank
-  private int coordinateZ;
+  private int coordinate_z;
 
-  private int surface_temperature_K;
+  private int surface_temperature_k;
 
   private float solar_masses;
 

@@ -1,7 +1,6 @@
 package com.planetarium.planetarium.stars;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +31,9 @@ public class StarController {
   }
 
   @PostMapping("/cus")
-  public ResponseEntity<Star> createCustomStar(@RequestBody CustomStarDTO data) {
+  public ResponseEntity<Star> createCustomStar(
+    @RequestBody CustomStarDTO data
+  ) {
     Star newStar = this.starService.createStar(data);
     return new ResponseEntity<Star>(newStar, HttpStatus.CREATED);
   }
