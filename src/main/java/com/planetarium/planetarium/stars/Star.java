@@ -35,19 +35,19 @@ public class Star {
   private StellarClass stellar_class;
 
   @Column
-  private int coordinateX;
+  private int coordinate_x;
 
   @Column
-  private int coordinateY;
+  private int coordinate_y;
 
   @Column
-  private int coordinateZ;
+  private int coordinate_z;
 
   @Column
   private boolean is_main_star;
 
   @Column
-  private int surface_temperature_K;
+  private int surface_temperature_k;
 
   @Column
   private float solar_masses;
@@ -93,11 +93,11 @@ public class Star {
 
     this.name = name;
     this.stellar_class = stellarClass;
-    this.coordinateX = coordinateX;
-    this.coordinateY = coordinateY;
-    this.coordinateZ = coordinateZ;
+    this.coordinate_x = coordinateX;
+    this.coordinate_y = coordinateY;
+    this.coordinate_z = coordinateZ;
     this.is_main_star = isMainStar;
-    this.surface_temperature_K = surfaceTemperatureK;
+    this.surface_temperature_k = surfaceTemperatureK;
     this.solar_masses = solarMasses;
     this.orbits_star_id = orbitsStarId;
     this.radius_Km = radiusKm;

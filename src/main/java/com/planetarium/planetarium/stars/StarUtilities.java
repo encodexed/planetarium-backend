@@ -2,6 +2,8 @@ package com.planetarium.planetarium.stars;
 
 import java.util.Date;
 
+import com.planetarium.planetarium.utils.Utils;
+
 public class StarUtilities {
 
   public static Star generateRandomStar() {
@@ -16,9 +18,8 @@ public class StarUtilities {
     int orbitsStarId = isMainStar ? 0 : getMainStarId();
     int radiusKm = generateRadius();
     Date now = new Date();
-    Long l = Long.valueOf(0);
 
-    return new Star(l, name, stellarClass, coordinateX, coordinateY, coordinateZ, isMainStar, surfaceTemperatureK,
+    return new Star(name, stellarClass, coordinateX, coordinateY, coordinateZ, isMainStar, surfaceTemperatureK,
         solarMasses, orbitsStarId, radiusKm, 1, now, 1, now, 1, now);
   }
 
@@ -38,8 +39,21 @@ public class StarUtilities {
     return true;
   }
 
+  // This needs to be unique
   public static String generateRandomStarName() {
-    return "Sol";
+    // Generates a random number between 3 and 14 characters
+    int length = (int) Utils.randomNumber(3, 11);
+
+    // Generates random letters
+    char[] letters = new char[length];
+    for (int i = 0; i < length; i++) {
+      char letter = Utils.randomChar();
+      letters[i] = letter;
+    }
+
+    String name = new String(letters);
+    String capitalised = name.substring(0, 1).toUpperCase().concat(name.substring(1));
+    return capitalised;
   }
 
   public static StellarClass generateRandomStellarClass() {
