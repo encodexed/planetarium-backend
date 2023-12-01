@@ -10,13 +10,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "stars")
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Star {
 
   @Id
@@ -74,10 +78,7 @@ public class Star {
   @Column
   private Date first_colonised;
 
-  // Construction
-
-  public Star() {
-  }
+  // Custom Constructors
 
   public Star(String name, StellarClass stellarClass) {
     this.name = name;
