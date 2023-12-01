@@ -1,21 +1,18 @@
 package com.planetarium.planetarium.jwt;
 
+import com.planetarium.planetarium.user.User;
+import com.planetarium.planetarium.user.UserService;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.planetarium.planetarium.user.User;
-import com.planetarium.planetarium.user.UserService;
-
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
@@ -27,9 +24,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
   private UserService userService;
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-      throws ServletException, IOException {
-
+  protected void doFilterInternal(
+    HttpServletRequest request,
+    HttpServletResponse response,
+    FilterChain filterChain
+  ) throws ServletException, IOException {
     String authHeader = request.getHeader("Authorization");
 
     // Fast fail if the JWT doesn't exist
@@ -43,17 +42,25 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     Long userId = this.jwtService.extractUserId(jwToken);
     // If user id exists in token, and has not been saved in SecurityContextHolder,
     // then proceed with verification
-    if (userId != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+    if (
+      userId != null &&
+      SecurityContextHolder.getContext().getAuthentication() == null
+    ) {
       // Find the user in the database
       User foundUser = this.userService.getById(userId);
       // Double check that the token is valid and not expired
       if (this.jwtService.isTokenValid(jwToken, foundUser)) {
         // Save the user in SecurityContextHolder so Spring knows we can show
-        UsernamePasswordAuthenticationToken userPassToken = new UsernamePasswordAuthenticationToken(foundUser, null,
-            foundUser.getAuthorities());
+        UsernamePasswordAuthenticationToken userPassToken = new UsernamePasswordAuthenticationToken(
+          foundUser,
+          null,
+          foundUser.getAuthorities()
+        );
         // This code adds some extra details based on the request, such as time the
         // request came in, IP, cookies, etc. as examples.
-        userPassToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+        userPassToken.setDetails(
+          new WebAuthenticationDetailsSource().buildDetails(request)
+        );
         // Finally let SecurityContextHolder know
         SecurityContextHolder.getContext().setAuthentication(userPassToken);
       }
@@ -62,5 +69,4 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     // Pass onto the next filter in the chain, regardless of outcome
     filterChain.doFilter(request, response);
   }
-
 }

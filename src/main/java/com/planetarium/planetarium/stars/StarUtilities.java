@@ -1,8 +1,7 @@
 package com.planetarium.planetarium.stars;
 
-import java.util.Date;
-
 import com.planetarium.planetarium.utils.Utils;
+import java.util.Date;
 
 public class StarUtilities {
 
@@ -17,8 +16,22 @@ public class StarUtilities {
     float solarRadii = generateRadii();
     Date now = new Date();
 
-    return new Star(name, stellarClass, coordinateX, coordinateY, coordinateZ, surfaceTemperatureK,
-        solarMasses, solarRadii, 1, now, 1, now, 1, now);
+    return new Star(
+      name,
+      stellarClass,
+      coordinateX,
+      coordinateY,
+      coordinateZ,
+      surfaceTemperatureK,
+      solarMasses,
+      solarRadii,
+      1,
+      now,
+      1,
+      now,
+      1,
+      now
+    );
   }
 
   private static float generateRadii() {
@@ -42,7 +55,10 @@ public class StarUtilities {
     }
 
     String name = new String(letters);
-    String capitalised = name.substring(0, 1).toUpperCase().concat(name.substring(1));
+    String capitalised = name
+      .substring(0, 1)
+      .toUpperCase()
+      .concat(name.substring(1));
     return capitalised;
   }
 

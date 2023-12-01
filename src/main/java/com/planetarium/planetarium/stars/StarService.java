@@ -1,10 +1,10 @@
 package com.planetarium.planetarium.stars;
 
+import jakarta.transaction.Transactional;
 import java.util.List;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
@@ -12,6 +12,9 @@ public class StarService {
 
   @Autowired
   private StarRepository starRepository;
+
+  @Autowired
+  private ModelMapper modelMapper;
 
   public List<Star> getAll() {
     return this.starRepository.findAll();
@@ -22,8 +25,7 @@ public class StarService {
   }
 
   public Star createStar(CustomStarDTO data) {
-    String name = data.getName();
-    StellarClass stellarClass = data.getStellarClass();
-    return this.starRepository.save(new Star(name, stellarClass));
+    Star newStar = modelMapper.map(data, Star.class);
+    return this.starRepository.save(newStar);
   }
 }

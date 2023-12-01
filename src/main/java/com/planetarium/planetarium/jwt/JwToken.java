@@ -11,11 +11,9 @@ public class JwToken {
   @Setter
   private String token;
 
-  public JwToken() {
-  }
+  public JwToken() {}
 
   public JwToken(String token) {
     this.token = token;
   }
-
 }

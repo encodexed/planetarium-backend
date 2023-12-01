@@ -1,17 +1,15 @@
 package com.planetarium.planetarium.auth;
 
+import com.planetarium.planetarium.jwt.JwToken;
+import com.planetarium.planetarium.jwt.JwtService;
+import com.planetarium.planetarium.user.User;
+import com.planetarium.planetarium.user.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.planetarium.planetarium.jwt.JwToken;
-import com.planetarium.planetarium.jwt.JwtService;
-import com.planetarium.planetarium.user.User;
-import com.planetarium.planetarium.user.UserService;
-
-import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
@@ -41,8 +39,10 @@ public class AuthService {
   }
 
   public JwToken login(LoginDTO data) {
-    UsernamePasswordAuthenticationToken userPasswordToken = new UsernamePasswordAuthenticationToken(data.getUsername(),
-        data.getPassword());
+    UsernamePasswordAuthenticationToken userPasswordToken = new UsernamePasswordAuthenticationToken(
+      data.getUsername(),
+      data.getPassword()
+    );
 
     authenticationManager.authenticate(userPasswordToken);
 
