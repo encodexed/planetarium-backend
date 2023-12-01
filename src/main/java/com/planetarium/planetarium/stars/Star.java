@@ -19,8 +19,8 @@ import lombok.Setter;
 @Table(name = "stars")
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Star {
 
   @Id
@@ -84,4 +84,29 @@ public class Star {
     this.name = name;
     this.stellar_class = stellarClass;
   }
+
+  // Omits Id field in construction
+  public Star(String name, StellarClass stellarClass, int coordinateX, int coordinateY, int coordinateZ,
+      boolean isMainStar, int surfaceTemperatureK, float solarMasses, int orbitsStarId, int radiusKm,
+      int firstDiscoveredBy, Date firstDiscovered, int firstExploredBy, Date firstExplored, int firstColonisedBy,
+      Date firstColonised) {
+
+    this.name = name;
+    this.stellar_class = stellarClass;
+    this.coordinateX = coordinateX;
+    this.coordinateY = coordinateY;
+    this.coordinateZ = coordinateZ;
+    this.is_main_star = isMainStar;
+    this.surface_temperature_K = surfaceTemperatureK;
+    this.solar_masses = solarMasses;
+    this.orbits_star_id = orbitsStarId;
+    this.radius_Km = radiusKm;
+    this.first_discovered_by = firstDiscoveredBy;
+    this.first_discovered = firstDiscovered;
+    this.first_explored_by = firstExploredBy;
+    this.first_explored = firstExplored;
+    this.first_colonised_by = firstColonisedBy;
+    this.first_colonised = firstColonised;
+  }
+
 }
