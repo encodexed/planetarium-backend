@@ -27,16 +27,11 @@ public class CustomStarDTO {
   @NotBlank
   private int coordinateZ;
 
-  @NotBlank
-  private boolean is_main_star;
-
   private int surface_temperature_K;
 
   private float solar_masses;
 
-  private int orbits_star_id;
-
-  private int radius_Km;
+  private int solar_radii;
 
   // User-related data
 

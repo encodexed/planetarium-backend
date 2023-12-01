@@ -44,19 +44,13 @@ public class Star {
   private int coordinate_z;
 
   @Column
-  private boolean is_main_star;
-
-  @Column
   private int surface_temperature_k;
 
   @Column
   private float solar_masses;
 
   @Column
-  private int orbits_star_id;
-
-  @Column
-  private int radius_Km;
+  private float solar_radii;
 
   // User-related data
 
@@ -87,7 +81,7 @@ public class Star {
 
   // Omits Id field in construction
   public Star(String name, StellarClass stellarClass, int coordinateX, int coordinateY, int coordinateZ,
-      boolean isMainStar, int surfaceTemperatureK, float solarMasses, int orbitsStarId, int radiusKm,
+      int surfaceTemperatureK, float solarMasses, float solarRadii,
       int firstDiscoveredBy, Date firstDiscovered, int firstExploredBy, Date firstExplored, int firstColonisedBy,
       Date firstColonised) {
 
@@ -96,11 +90,9 @@ public class Star {
     this.coordinate_x = coordinateX;
     this.coordinate_y = coordinateY;
     this.coordinate_z = coordinateZ;
-    this.is_main_star = isMainStar;
     this.surface_temperature_k = surfaceTemperatureK;
     this.solar_masses = solarMasses;
-    this.orbits_star_id = orbitsStarId;
-    this.radius_Km = radiusKm;
+    this.solar_radii = solarRadii;
     this.first_discovered_by = firstDiscoveredBy;
     this.first_discovered = firstDiscovered;
     this.first_explored_by = firstExploredBy;

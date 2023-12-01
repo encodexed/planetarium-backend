@@ -12,31 +12,21 @@ public class StarUtilities {
     int coordinateX = generateRandomCoordinate();
     int coordinateY = generateRandomCoordinate();
     int coordinateZ = generateRandomCoordinate();
-    boolean isMainStar = generateMainStarStatus();
     int surfaceTemperatureK = generateSurfaceTemperature();
     float solarMasses = generateSolarMasses();
-    int orbitsStarId = isMainStar ? 0 : getMainStarId();
-    int radiusKm = generateRadius();
+    float solarRadii = generateRadii();
     Date now = new Date();
 
-    return new Star(name, stellarClass, coordinateX, coordinateY, coordinateZ, isMainStar, surfaceTemperatureK,
-        solarMasses, orbitsStarId, radiusKm, 1, now, 1, now, 1, now);
+    return new Star(name, stellarClass, coordinateX, coordinateY, coordinateZ, surfaceTemperatureK,
+        solarMasses, solarRadii, 1, now, 1, now, 1, now);
   }
 
-  private static int generateRadius() {
-    return 10000;
-  }
-
-  private static int getMainStarId() {
-    return 0;
+  private static float generateRadii() {
+    return 1.00f;
   }
 
   private static float generateSolarMasses() {
     return 1.00f;
-  }
-
-  private static boolean generateMainStarStatus() {
-    return true;
   }
 
   // This needs to be unique
