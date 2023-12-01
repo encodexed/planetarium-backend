@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.validation.Valid;
-
 @RestController
 @RequestMapping("/stars")
 public class StarController {
@@ -26,8 +24,15 @@ public class StarController {
     return new ResponseEntity<>(allStars, HttpStatus.OK);
   }
 
-  @PostMapping
-  public ResponseEntity<Star> createStar(@Valid @RequestBody StarCreateDTO data) {
+  @PostMapping("/gen")
+  public ResponseEntity<Star> generateStar() {
+    Star starBlueprint = StarUtilities.generateRandomStar();
+    Star createdStar = this.starService.createStar(starBlueprint);
+    return new ResponseEntity<Star>(createdStar, HttpStatus.CREATED);
+  }
+
+  @PostMapping("/cus")
+  public ResponseEntity<Star> createCustomStar(@RequestBody CustomStarDTO data) {
     Star newStar = this.starService.createStar(data);
     return new ResponseEntity<Star>(newStar, HttpStatus.CREATED);
   }
