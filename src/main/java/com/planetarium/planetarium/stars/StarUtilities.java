@@ -1,6 +1,5 @@
 package com.planetarium.planetarium.stars;
 
-import com.planetarium.planetarium.utils.Utils;
 import java.util.Date;
 
 public class StarUtilities {
@@ -42,25 +41,25 @@ public class StarUtilities {
     return 1.00f;
   }
 
-  // This needs to be unique
-  public static String generateRandomStarName() {
-    // Generates a random number between 3 and 14 characters
-    int length = (int) Utils.randomNumber(3, 11);
+  // // This needs to be unique
+  // public static String generateRandomStarName() {
+  //   // Generates a random number between 3 and 14 characters
+  //   int length = (int) Utils.randomNumber(3, 11);
 
-    // Generates random letters
-    char[] letters = new char[length];
-    for (int i = 0; i < length; i++) {
-      char letter = Utils.randomChar();
-      letters[i] = letter;
-    }
+  //   // Generates random letters
+  //   char[] letters = new char[length];
+  //   for (int i = 0; i < length; i++) {
+  //     char letter = Utils.randomChar();
+  //     letters[i] = letter;
+  //   }
 
-    String name = new String(letters);
-    String capitalised = name
-      .substring(0, 1)
-      .toUpperCase()
-      .concat(name.substring(1));
-    return capitalised;
-  }
+  //   String name = new String(letters);
+  //   String capitalised = name
+  //     .substring(0, 1)
+  //     .toUpperCase()
+  //     .concat(name.substring(1));
+  //   return capitalised;
+  // }
 
   public static StellarClass generateRandomStellarClass() {
     return StellarClass.M;
@@ -73,5 +72,14 @@ public class StarUtilities {
 
   public static int generateSurfaceTemperature() {
     return 666;
+  }
+
+  public static String generateRandomStarName() {
+    // int length = (int) Utils.randomNumber(3, 15);
+    // String starName = "";
+
+    // for (int i = 0; i < length; i++) {}
+
+    return "";
   }
 }

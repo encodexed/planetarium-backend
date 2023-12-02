@@ -1,5 +1,8 @@
 package com.planetarium.planetarium.stars;
 
+import com.planetarium.planetarium.utils.Utils;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -36,5 +39,14 @@ public class StarController {
   ) {
     Star newStar = this.starService.createStar(data);
     return new ResponseEntity<Star>(newStar, HttpStatus.CREATED);
+  }
+
+  @GetMapping("/read")
+  public void read() throws FileNotFoundException {
+    try {
+      Utils.getPhoneticOptions();
+    } catch (FileNotFoundException e) {
+      System.out.println(e.getMessage());
+    }
   }
 }
