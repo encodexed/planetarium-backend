@@ -23,9 +23,15 @@ public class Utils {
   }
 
   public static String[] getPhoneticOptions() throws FileNotFoundException {
-    String phonetics = fileToString("src/main/resources/phonetics.txt");
-    String[] phoneticsArrs = phonetics.split("\n");
-    return phoneticsArrs;
+    try {
+      String phonetics = fileToString("src/main/resources/phonetics.txt");
+      String[] phoneticsArrs = phonetics.split("\n");
+      return phoneticsArrs;
+    } catch (FileNotFoundException e) {
+      System.out.println("File not found.");
+    }
+
+    return new String[0];
   }
 
   // Read the file and convert to a String
@@ -40,5 +46,31 @@ public class Utils {
     }
     reader.close();
     return sb.toString();
+  }
+
+  public static String getRandomPronounceableWord(int length)
+    throws FileNotFoundException {
+    StringBuilder word = new StringBuilder();
+    String[] phoneticOptions = getPhoneticOptions();
+    String[] vowels = phoneticOptions[0].toString().split("-");
+    String[] consonants = phoneticOptions[1].toString().split("-");
+
+    String firstLetter = String.valueOf(randomChar()).toUpperCase();
+    word.append(firstLetter);
+    System.out.println(firstLetter);
+    boolean nextLetterConsonant = false;
+
+    for (int i = 1; i < length; i++) {
+      if (nextLetterConsonant == true) {
+        String next = consonants[randomNumber(0, consonants.length - 1)];
+        word.append(next);
+      } else {
+        String next = vowels[randomNumber(0, vowels.length - 1)];
+        word.append(next);
+      }
+      nextLetterConsonant = !nextLetterConsonant;
+    }
+
+    return word.toString();
   }
 }
