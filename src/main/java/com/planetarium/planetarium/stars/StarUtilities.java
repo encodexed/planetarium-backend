@@ -1,11 +1,12 @@
 package com.planetarium.planetarium.stars;
 
 import com.planetarium.planetarium.utils.Utils;
+import java.io.FileNotFoundException;
 import java.util.Date;
 
 public class StarUtilities {
 
-  public static Star generateRandomStar() {
+  public static Star generateRandomStar() throws FileNotFoundException {
     String name = generateRandomStarName();
     StellarClass stellarClass = generateRandomStellarClass();
     int coordinateX = generateRandomCoordinate();
@@ -42,26 +43,6 @@ public class StarUtilities {
     return 1.00f;
   }
 
-  // This needs to be unique
-  public static String generateRandomStarName() {
-    // Generates a random number between 3 and 14 characters
-    int length = (int) Utils.randomNumber(3, 11);
-
-    // Generates random letters
-    char[] letters = new char[length];
-    for (int i = 0; i < length; i++) {
-      char letter = Utils.randomChar();
-      letters[i] = letter;
-    }
-
-    String name = new String(letters);
-    String capitalised = name
-      .substring(0, 1)
-      .toUpperCase()
-      .concat(name.substring(1));
-    return capitalised;
-  }
-
   public static StellarClass generateRandomStellarClass() {
     return StellarClass.M;
   }
@@ -73,5 +54,10 @@ public class StarUtilities {
 
   public static int generateSurfaceTemperature() {
     return 666;
+  }
+
+  public static String generateRandomStarName() throws FileNotFoundException {
+    int length = (int) Utils.randomNumber(3, 6);
+    return Utils.getRandomPronounceableWord(length);
   }
 }

@@ -1,5 +1,6 @@
 package com.planetarium.planetarium.stars;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class StarController {
   }
 
   @PostMapping("/gen")
-  public ResponseEntity<Star> generateStar() {
+  public ResponseEntity<Star> generateStar() throws FileNotFoundException {
     Star starBlueprint = StarUtilities.generateRandomStar();
     Star createdStar = this.starService.createStar(starBlueprint);
     return new ResponseEntity<Star>(createdStar, HttpStatus.CREATED);
