@@ -13,7 +13,7 @@ public class Utils {
   }
 
   public static double randomNumber(double lowest, double range) {
-    return (Math.floor((Math.random() * range) + lowest));
+    return (Math.random() * range) + lowest;
   }
 
   // Returns a random lowercase character
