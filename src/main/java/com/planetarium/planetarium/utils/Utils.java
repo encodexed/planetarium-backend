@@ -64,10 +64,13 @@ public class Utils {
       firstLetter.equals("E") ||
       firstLetter.equals("I") ||
       firstLetter.equals("O") ||
-      firstLetter.equals("U") ||
-      firstLetter.equals("Y")
+      firstLetter.equals("U")
     ) {
       nextLetterConsonant = true;
+    }
+
+    if (firstLetter.equals("Q")) {
+      word.append("u");
     }
 
     for (int i = 1; i < length; i++) {
