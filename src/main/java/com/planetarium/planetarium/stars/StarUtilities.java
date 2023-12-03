@@ -57,7 +57,7 @@ public class StarUtilities {
   }
 
   public static String generateRandomStarName() throws FileNotFoundException {
-    int length = (int) Utils.randomNumber(3, 15);
+    int length = (int) Utils.randomNumber(3, 6);
     return Utils.getRandomPronounceableWord(length);
   }
 }

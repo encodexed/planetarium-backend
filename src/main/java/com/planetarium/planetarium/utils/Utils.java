@@ -57,8 +57,18 @@ public class Utils {
 
     String firstLetter = String.valueOf(randomChar()).toUpperCase();
     word.append(firstLetter);
-    System.out.println(firstLetter);
+
     boolean nextLetterConsonant = false;
+    if (
+      firstLetter.equals("A") ||
+      firstLetter.equals("E") ||
+      firstLetter.equals("I") ||
+      firstLetter.equals("O") ||
+      firstLetter.equals("U") ||
+      firstLetter.equals("Y")
+    ) {
+      nextLetterConsonant = true;
+    }
 
     for (int i = 1; i < length; i++) {
       if (nextLetterConsonant == true) {
