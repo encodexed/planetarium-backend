@@ -2,7 +2,6 @@ package com.planetarium.planetarium.stars;
 
 import com.planetarium.planetarium.utils.Utils;
 import java.io.FileNotFoundException;
-import java.util.Date;
 import org.apache.commons.math3.util.Precision;
 
 public class StarUtilities {
@@ -10,29 +9,16 @@ public class StarUtilities {
   public static Star generateRandomStar() throws FileNotFoundException {
     String name = generateRandomStarName();
     StellarClass stellarClass = generateRandomStellarClass();
-    int coordinateX = generateRandomCoordinate();
-    int coordinateY = generateRandomCoordinate();
-    int coordinateZ = generateRandomCoordinate();
     int surfaceTemperatureK = generateSurfaceTemperature(stellarClass);
     float solarMasses = generateSolarMasses(stellarClass);
     float solarRadii = generateRadii(stellarClass);
-    Date now = new Date();
 
     return new Star(
       name,
       stellarClass,
-      coordinateX,
-      coordinateY,
-      coordinateZ,
       surfaceTemperatureK,
       solarMasses,
-      solarRadii,
-      1,
-      now,
-      1,
-      now,
-      1,
-      now
+      solarRadii
     );
   }
 

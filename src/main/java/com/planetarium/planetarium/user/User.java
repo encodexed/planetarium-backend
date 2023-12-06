@@ -1,5 +1,7 @@
 package com.planetarium.planetarium.user;
 
+import com.planetarium.planetarium.starSystems.StarSystem;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -7,7 +9,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import lombok.Getter;
@@ -37,7 +41,20 @@ public class User implements UserDetails {
 
   @Getter
   @Enumerated(EnumType.STRING)
+  @Column
   private Role role;
+
+  @OneToMany(mappedBy = "firstArrivalBy", cascade = CascadeType.ALL)
+  @Column(name = "star_systems_first_arrived_to")
+  private List<StarSystem> starSystemsFirstArrivedTo = new ArrayList<>();
+
+  @OneToMany(mappedBy = "firstExploredBy", cascade = CascadeType.ALL)
+  @Column(name = "star_systems_first_explored")
+  private List<StarSystem> starSystemsFirstExplored = new ArrayList<>();
+
+  @OneToMany(mappedBy = "firstColonisedBy", cascade = CascadeType.ALL)
+  @Column(name = "star_systems_first_arrived_to")
+  private List<StarSystem> starSystemsFirstColonised = new ArrayList<>();
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
