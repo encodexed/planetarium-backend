@@ -43,23 +43,23 @@ public class StarSystem {
   @Column(name = "coordinate_z")
   private int coordinateZ;
 
-  @JoinColumn(name = "first_arrival_by")
+  @JoinColumn(name = "first_arrival_user_id")
   @ManyToOne
-  private User firstArrivalBy;
+  private User firstArrivalUserId;
 
   @Column(name = "first_arrival_at")
   private Date firstArrivalAt;
 
-  @JoinColumn(name = "first_explored_by")
+  @JoinColumn(name = "first_explored_user_id")
   @ManyToOne
-  private User firstExploredBy;
+  private User firstExploredUserId;
 
   @Column(name = "first_explored_at")
   private Date firstExploredAt;
 
-  @JoinColumn(name = "first_colonised_by")
+  @JoinColumn(name = "first_colonised_user_id")
   @ManyToOne
-  private User firstColonisedBy;
+  private User firstColonisedUserId;
 
   @Column(name = "first_colonised_at")
   private Date firstColonisedAt;
@@ -68,7 +68,6 @@ public class StarSystem {
   private Date dateInstantiated;
 
   @OneToMany(mappedBy = "starSystem", cascade = CascadeType.ALL)
-  @Column
   private List<Star> stars;
 
   public StarSystem(
@@ -76,22 +75,22 @@ public class StarSystem {
     int coordinateX,
     int coordinateY,
     int coordinateZ,
-    User firstArrivalBy,
+    User firstArrivalUserId,
     Date firstArrivalAt,
-    User firstExploredBy,
+    User firstExploredUserId,
     Date firstExploredAt,
-    User firstColonisedBy,
+    User firstColonisedUserId,
     Date firstColonisedAt
   ) {
     this.name = name;
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.coordinateZ = coordinateZ;
-    this.firstArrivalBy = firstArrivalBy;
+    this.firstArrivalUserId = firstArrivalUserId;
     this.firstArrivalAt = firstArrivalAt;
-    this.firstExploredBy = firstExploredBy;
+    this.firstExploredUserId = firstExploredUserId;
     this.firstExploredAt = firstArrivalAt;
-    this.firstColonisedBy = firstColonisedBy;
+    this.firstColonisedUserId = firstColonisedUserId;
     this.firstColonisedAt = firstColonisedAt;
     this.dateInstantiated = new Date();
   }

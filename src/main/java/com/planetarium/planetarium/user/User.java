@@ -44,15 +44,15 @@ public class User implements UserDetails {
   @Column
   private Role role;
 
-  @OneToMany(mappedBy = "firstArrivalBy", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "firstArrivalUserId", cascade = CascadeType.ALL)
   @Column(name = "star_systems_first_arrived_to")
   private List<StarSystem> starSystemsFirstArrivedTo = new ArrayList<>();
 
-  @OneToMany(mappedBy = "firstExploredBy", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "firstExploredUserId", cascade = CascadeType.ALL)
   @Column(name = "star_systems_first_explored")
   private List<StarSystem> starSystemsFirstExplored = new ArrayList<>();
 
-  @OneToMany(mappedBy = "firstColonisedBy", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "firstColonisedUserId", cascade = CascadeType.ALL)
   @Column(name = "star_systems_first_arrived_to")
   private List<StarSystem> starSystemsFirstColonised = new ArrayList<>();
 

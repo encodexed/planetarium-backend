@@ -31,7 +31,7 @@ public class Star {
   @Column(unique = true)
   private String name;
 
-  @JoinColumn(name = "star_system")
+  @JoinColumn(name = "star_system_id")
   @ManyToOne
   private StarSystem starSystem;
 
