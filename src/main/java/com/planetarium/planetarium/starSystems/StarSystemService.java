@@ -15,4 +15,8 @@ public class StarSystemService {
   public List<StarSystem> getAll() {
     return this.starSystemRepository.findAll();
   }
+
+  public StarSystem createStarSystem(StarSystem data) {
+    return this.starSystemRepository.save(data);
+  }
 }

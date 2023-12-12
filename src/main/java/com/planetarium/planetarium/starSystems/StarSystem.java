@@ -75,6 +75,7 @@ public class StarSystem {
     int coordinateX,
     int coordinateY,
     int coordinateZ,
+    Date dateInstantiated,
     User firstArrivalUserId,
     Date firstArrivalAt,
     User firstExploredUserId,
@@ -86,6 +87,7 @@ public class StarSystem {
     this.coordinateX = coordinateX;
     this.coordinateY = coordinateY;
     this.coordinateZ = coordinateZ;
+    this.dateInstantiated = dateInstantiated;
     this.firstArrivalUserId = firstArrivalUserId;
     this.firstArrivalAt = firstArrivalAt;
     this.firstExploredUserId = firstExploredUserId;

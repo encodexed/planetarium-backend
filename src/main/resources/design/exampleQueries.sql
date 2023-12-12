@@ -9,8 +9,8 @@ FROM star_systems
 INNER JOIN users ON star_systems.first_arrival_by = users.id;
 
 -- Inner join for stars and star_systems
-SELECT stars.name AS 'Star name', star_systems.id AS 'System name', stellar_class AS 'Stellar class',
+SELECT stars.name AS 'Star name', star_systems.name AS 'System name', stellar_class AS 'Stellar class',
 solar_masses AS 'Solar masses', solar_radii AS 'Solar radii', surface_temperature_k AS 'Surface Temp (K)'
 FROM stars
-INNER JOIN star_systems ON star_systems.id = stars.star_system
+INNER JOIN star_systems ON star_systems.id = stars.star_system_id
 ORDER BY surface_temperature_k DESC;

@@ -1,7 +1,9 @@
 package com.planetarium.planetarium.stars;
 
+import com.planetarium.planetarium.starSystems.StarSystem;
 import com.planetarium.planetarium.utils.Utils;
 import java.io.FileNotFoundException;
+import java.util.Date;
 import org.apache.commons.math3.util.Precision;
 
 public class StarUtilities {
@@ -43,6 +45,29 @@ public class StarUtilities {
     System.out.println("\nRADII: " + radii);
 
     return Precision.round(radii, 3);
+  }
+
+  public static StarSystem generateRandomStarSystem()
+    throws FileNotFoundException {
+    String name = generateRandomStarName();
+    int coordinateX = generateRandomCoordinate();
+    int coordinateY = generateRandomCoordinate();
+    int coordinateZ = generateRandomCoordinate();
+    Date dateInstantiated = new Date();
+
+    return new StarSystem(
+      name,
+      coordinateX,
+      coordinateY,
+      coordinateZ,
+      dateInstantiated,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    );
   }
 
   private static float generateSolarMasses(StellarClass stellarClass) {
