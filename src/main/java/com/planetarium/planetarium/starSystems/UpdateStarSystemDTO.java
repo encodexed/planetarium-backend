@@ -1,7 +1,6 @@
 package com.planetarium.planetarium.starSystems;
 
 import jakarta.validation.constraints.Pattern;
-import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 

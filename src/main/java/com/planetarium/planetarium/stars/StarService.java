@@ -46,4 +46,15 @@ public class StarService {
 
     return foundStar;
   }
+
+  public boolean deleteById(Long id) {
+    Optional<Star> foundStar = this.starRepository.findById(id);
+
+    if (foundStar.isPresent()) {
+      this.starRepository.delete(foundStar.get());
+      return true;
+    }
+
+    return false;
+  }
 }
