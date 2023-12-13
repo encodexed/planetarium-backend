@@ -2,6 +2,7 @@ package com.planetarium.planetarium.stars;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,18 @@ public class StarService {
 
   public Star getById(Long id) {
     return this.starRepository.findById(id).orElse(null);
+  }
+
+  public Optional<Star> replaceById(Long id, UpdateStarDTO data) {
+    Optional<Star> foundStar = this.starRepository.findById(id);
+
+    if (foundStar.isPresent()) {
+      Star starToReplace = foundStar.get();
+      modelMapper.map(data, starToReplace);
+      Star replacedStar = this.starRepository.save(starToReplace);
+      return Optional.of(replacedStar);
+    }
+
+    return foundStar;
   }
 }

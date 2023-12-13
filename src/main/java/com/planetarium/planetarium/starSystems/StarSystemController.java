@@ -4,12 +4,15 @@ import com.planetarium.planetarium.exceptions.NotFoundException;
 import com.planetarium.planetarium.stars.StarUtilities;
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,6 +49,26 @@ public class StarSystemController {
     return new ResponseEntity<StarSystem>(
       createdStarSystem,
       HttpStatus.CREATED
+    );
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<StarSystem> updateStarSystem(
+    @PathVariable Long id,
+    @RequestBody UpdateStarSystemDTO data
+  ) {
+    Optional<StarSystem> replacedStarSystem =
+      this.starSystemService.replaceById(id, data);
+
+    if (replacedStarSystem.isPresent()) {
+      return new ResponseEntity<>(replacedStarSystem.get(), HttpStatus.OK);
+    }
+
+    throw new NotFoundException(
+      String.format(
+        "Could not update Star System with id: %d because it does not exist",
+        id
+      )
     );
   }
 }
