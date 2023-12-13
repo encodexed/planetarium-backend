@@ -19,4 +19,8 @@ public class StarSystemService {
   public StarSystem createStarSystem(StarSystem data) {
     return this.starSystemRepository.save(data);
   }
+
+  public StarSystem getById(Long id) {
+    return this.starSystemRepository.findById(id).orElse(null);
+  }
 }

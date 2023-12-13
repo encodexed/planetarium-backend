@@ -28,4 +28,8 @@ public class StarService {
     Star newStar = modelMapper.map(data, Star.class);
     return this.starRepository.save(newStar);
   }
+
+  public Star getById(Long id) {
+    return this.starRepository.findById(id).orElse(null);
+  }
 }
