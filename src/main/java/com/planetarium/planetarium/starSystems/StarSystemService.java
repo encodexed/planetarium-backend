@@ -43,4 +43,16 @@ public class StarSystemService {
 
     return foundStarSystem;
   }
+
+  public boolean deleteById(Long id) {
+    Optional<StarSystem> foundStarSystem =
+      this.starSystemRepository.findById(id);
+
+    if (foundStarSystem.isPresent()) {
+      this.starSystemRepository.delete(foundStarSystem.get());
+      return true;
+    }
+
+    return false;
+  }
 }
