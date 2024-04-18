@@ -1,83 +1,74 @@
 package com.planetarium.planetarium.stars;
 
-import java.util.Date;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.planetarium.planetarium.starSystems.StarSystem;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "stars")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Star {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Long id;
 
-  @Column
+  @Column(unique = true)
   private String name;
 
+  @JoinColumn(name = "star_system_id")
+  @ManyToOne
+  @JsonBackReference
+  private StarSystem starSystem;
+
   @Column
+  @Enumerated(EnumType.STRING)
   private StellarClass stellar_class;
 
   @Column
-  private int coordinateX;
-
-  @Column
-  private int coordinateY;
-
-  @Column
-  private int coordinateZ;
-
-  @Column
-  private boolean is_main_star;
-
-  @Column
-  private int surface_temperature_K;
+  private int surface_temperature_k;
 
   @Column
   private float solar_masses;
 
   @Column
-  private int orbits_star_id;
+  private float solar_radii;
 
-  @Column
-  private int radius_Km;
-
-  // User-related data
-
-  @Column
-  private int first_discovered_by;
-
-  @Column
-  private Date first_discovered;
-
-  @Column
-  private int first_explored_by;
-
-  @Column
-  private Date first_explored;
-
-  @Column
-  private int first_colonised_by;
-
-  @Column
-  private Date first_colonised;
-
-  // Construction
-
-  public Star() {
-  }
+  // Custom Constructors
 
   public Star(String name, StellarClass stellarClass) {
     this.name = name;
     this.stellar_class = stellarClass;
+  }
+
+  // Omits Id field in construction
+  public Star(
+    String name,
+    StellarClass stellarClass,
+    int surfaceTemperatureK,
+    float solarMasses,
+    float solarRadii
+  ) {
+    this.name = name;
+    this.stellar_class = stellarClass;
+    this.surface_temperature_k = surfaceTemperatureK;
+    this.solar_masses = solarMasses;
+    this.solar_radii = solarRadii;
   }
 }

@@ -1,6 +1,6 @@
 package com.planetarium.planetarium.stars;
 
-enum StellarClass {
+public enum StellarClass {
   O,
   B,
   A,
@@ -8,5 +8,5 @@ enum StellarClass {
   G,
   K,
   M,
-  OTHER
+  OTHER,
 }
