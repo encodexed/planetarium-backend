@@ -4,6 +4,8 @@ import com.planetarium.planetarium.starSystems.StarSystem;
 import com.planetarium.planetarium.utils.Utils;
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.List;
+
 import org.apache.commons.math3.util.Precision;
 
 public class StarUtilities {
@@ -22,6 +24,31 @@ public class StarUtilities {
       solarMasses,
       solarRadii
     );
+  }
+
+  public static Star generateRandomStar(String name) {
+    StellarClass stellarClass = generateRandomStellarClass();
+    int surfaceTemperatureK = generateSurfaceTemperature(stellarClass);
+    float solarMasses = generateSolarMasses(stellarClass);
+    float solarRadii = generateRadii(stellarClass);
+
+    return new Star(
+            name,
+            stellarClass,
+            surfaceTemperatureK,
+            solarMasses,
+            solarRadii
+    );
+  }
+
+  public static String generateNextStarName(String systemName, List<String> takenStarNames) {
+    int length = takenStarNames.size();
+    String newName = systemName + " " + Character.toString(65 + length);
+    while (takenStarNames.contains(newName)) {
+      length += 1;
+      newName = systemName + " " + Character.toString(65 + length);
+    }
+    return newName;
   }
 
   private static float generateRadii(StellarClass stellarClass) {
@@ -138,7 +165,7 @@ public class StarUtilities {
   }
 
   public static String generateRandomStarName() throws FileNotFoundException {
-    int length = (int) Utils.randomNumber(3, 6);
+    int length = Utils.randomNumber(3, 6);
     return Utils.getRandomPronounceableWord(length);
   }
 }

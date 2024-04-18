@@ -1,8 +1,11 @@
 package com.planetarium.planetarium.stars;
 
 import jakarta.transaction.Transactional;
+
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +24,16 @@ public class StarService {
     return this.starRepository.findAll();
   }
 
-  public Star createStar(Star data) {
-    return this.starRepository.save(data);
+  public Star createStar() throws FileNotFoundException {
+    Star starBlueprint = StarUtilities.generateRandomStar();
+    return this.starRepository.save(starBlueprint);
+  }
+
+  public void createNamedStar(String sysName, Long sysId) throws FileNotFoundException {
+    List<String> takenStarNames = getStarNamesOfSystem(sysId);
+    String newStarName = StarUtilities.generateNextStarName(sysName, takenStarNames);
+    Star starBlueprint = StarUtilities.generateRandomStar(newStarName);
+    this.starRepository.save(starBlueprint);
   }
 
   public Star createStar(CustomStarDTO data) {
@@ -56,5 +67,11 @@ public class StarService {
     }
 
     return false;
+  }
+
+  public List<String> getStarNamesOfSystem(Long sysId) {
+//    List<Star> starsInSystem = this.starRepository.getStarsOfSystem(sysId);
+//    return starsInSystem.stream().map(Star::getName).toList();
+    return this.starRepository.getStarsOfSystem(sysId);
   }
 }

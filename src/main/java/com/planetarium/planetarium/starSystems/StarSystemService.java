@@ -1,6 +1,9 @@
 package com.planetarium.planetarium.starSystems;
 
+import com.planetarium.planetarium.stars.StarUtilities;
 import jakarta.transaction.Transactional;
+
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import org.modelmapper.ModelMapper;
@@ -21,8 +24,9 @@ public class StarSystemService {
     return this.starSystemRepository.findAll();
   }
 
-  public StarSystem createStarSystem(StarSystem data) {
-    return this.starSystemRepository.save(data);
+  public StarSystem createStarSystem() throws FileNotFoundException {
+    StarSystem starSystemBlueprint = StarUtilities.generateRandomStarSystem();
+    return this.starSystemRepository.save(starSystemBlueprint);
   }
 
   public StarSystem getById(Long id) {

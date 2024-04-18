@@ -1,7 +1,7 @@
 package com.planetarium.planetarium.starSystems;
 
 import com.planetarium.planetarium.exceptions.NotFoundException;
-import com.planetarium.planetarium.stars.StarUtilities;
+import com.planetarium.planetarium.stars.StarService;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
@@ -24,6 +24,9 @@ public class StarSystemController {
   @Autowired
   private StarSystemService starSystemService;
 
+  @Autowired
+  private StarService starService;
+
   @GetMapping
   public ResponseEntity<List<StarSystem>> getAll() {
     List<StarSystem> allStarSystems = this.starSystemService.getAll();
@@ -44,9 +47,11 @@ public class StarSystemController {
   @PostMapping("/gen")
   public ResponseEntity<StarSystem> generateStarSystem()
     throws FileNotFoundException {
-    StarSystem starSystemBlueprint = StarUtilities.generateRandomStarSystem();
-    StarSystem createdStarSystem =
-      this.starSystemService.createStarSystem(starSystemBlueprint);
+    StarSystem createdStarSystem = this.starSystemService.createStarSystem();
+    // Give it a star:
+    String sysName = createdStarSystem.getName();
+    Long sysId = createdStarSystem.getId();
+    this.starService.createNamedStar(sysName, sysId);
     return new ResponseEntity<StarSystem>(
       createdStarSystem,
       HttpStatus.CREATED
