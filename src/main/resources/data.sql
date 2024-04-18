@@ -16,9 +16,9 @@ VALUES
 
 INSERT INTO stars(id, name, stellar_class, solar_radii, solar_masses, surface_temperature_k, star_system_id)
 VALUES
-  (1, "The Sun", "G", 1, 1, 5772, null),
-  (2, "Alpha Centauri A", "G", 1.2175, 1.0788, 5790, 2),
-  (3, "Alpha Centauri B", "K", 0.8591, 0.9092, 5260, 2),
-  (4, "Sirius A", "A", 1.711, 2.063, 9940, 3),
-  (5, "Procyon A", "F", 2.048, 1.499, 6530, 3)
+  (1, "The Sun", "G", 1, 1, 5772, 1),
+  (2, "Alpha Centauri A", "G", 1.2175, 1.0788, 5790, 1),
+  (3, "Alpha Centauri B", "K", 0.8591, 0.9092, 5260, 1),
+  (4, "Sirius A", "A", 1.711, 2.063, 9940, 1),
+  (5, "Procyon A", "F", 2.048, 1.499, 6530, 1)
  ;

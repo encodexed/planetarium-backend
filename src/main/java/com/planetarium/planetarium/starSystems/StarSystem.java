@@ -1,5 +1,6 @@
 package com.planetarium.planetarium.starSystems;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.planetarium.planetarium.stars.Star;
 import com.planetarium.planetarium.user.User;
 import jakarta.persistence.CascadeType;
@@ -68,6 +69,7 @@ public class StarSystem {
   private Date dateInstantiated;
 
   @OneToMany(mappedBy = "starSystem", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private List<Star> stars;
 
   public StarSystem(

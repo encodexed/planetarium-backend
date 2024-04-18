@@ -1,5 +1,6 @@
 package com.planetarium.planetarium.stars;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.planetarium.planetarium.starSystems.StarSystem;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,6 +34,7 @@ public class Star {
 
   @JoinColumn(name = "star_system_id")
   @ManyToOne
+  @JsonBackReference
   private StarSystem starSystem;
 
   @Column
