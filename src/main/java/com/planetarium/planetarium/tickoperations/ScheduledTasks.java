@@ -10,7 +10,7 @@ public class ScheduledTasks {
     @Autowired
     private TickOperationsService tickOperationsService;
 
-    @Scheduled(cron = "0 32 * * * *")
+    @Scheduled(cron = "0 0 * * * *")
     public void execute() {
         tickOperationsService.runsEveryHour();
     }
