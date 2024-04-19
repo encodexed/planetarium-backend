@@ -28,15 +28,4 @@ public class UpdateStarSystemDTO {
     message = "'coordinate_x' must be an integer"
   )
   private int coordinateZ;
-  // private Long first_arrival_user_id;
-
-  // private Date first_arrival_at;
-
-  // private Long first_explored_user_id;
-
-  // private Date first_explored_at;
-
-  // private Long first_colonised_user_id;
-
-  // private Date first_colonised_at;
 }

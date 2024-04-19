@@ -93,7 +93,7 @@ public class StarSystem {
     this.firstArrivalUserId = firstArrivalUserId;
     this.firstArrivalAt = firstArrivalAt;
     this.firstExploredUserId = firstExploredUserId;
-    this.firstExploredAt = firstArrivalAt;
+    this.firstExploredAt = firstExploredAt;
     this.firstColonisedUserId = firstColonisedUserId;
     this.firstColonisedAt = firstColonisedAt;
     this.dateInstantiated = new Date();

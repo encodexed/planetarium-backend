@@ -14,11 +14,11 @@ VALUES
   (4, "Procyon", 50, 50, 50, "2023-12-01 15:29:25.427000", "2023-12-01 15:29:25.427000", 1, "2023-12-01 15:29:25.427000", 1, "2023-12-01 15:29:25.427000", 1)
  ;
 
-INSERT INTO stars(id, name, stellar_class, solar_radii, solar_masses, surface_temperature_k, star_system_id)
+INSERT INTO stars(id, name, stellar_class, solar_radii, solar_masses, surface_temperature_k, star_system_id, date_instantiated)
 VALUES
-  (1, "The Sun", "G", 1, 1, 5772, 1),
-  (2, "Alpha Centauri A", "G", 1.2175, 1.0788, 5790, 1),
-  (3, "Alpha Centauri B", "K", 0.8591, 0.9092, 5260, 1),
-  (4, "Sirius A", "A", 1.711, 2.063, 9940, 1),
-  (5, "Procyon A", "F", 2.048, 1.499, 6530, 1)
+  (1, "The Sun", "G", 1, 1, 5772, 1, "2023-12-01 15:29:25.427000"),
+  (2, "Alpha Centauri A", "G", 1.2175, 1.0788, 5790, 1, "2023-12-01 15:29:25.427000"),
+  (3, "Alpha Centauri B", "K", 0.8591, 0.9092, 5260, 1, "2023-12-01 15:29:25.427000"),
+  (4, "Sirius A", "A", 1.711, 2.063, 9940, 1, "2023-12-01 15:29:25.427000"),
+  (5, "Procyon A", "F", 2.048, 1.499, 6530, 1, "2023-12-01 15:29:25.427000")
  ;

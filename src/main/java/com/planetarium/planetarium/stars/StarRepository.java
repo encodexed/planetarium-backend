@@ -10,5 +10,8 @@ public interface StarRepository extends JpaRepository<Star, Long> {
   @Query(value = "SELECT name FROM stars WHERE star_system_id = :sysId", nativeQuery = true)
   List<String> getStarsOfSystem(@Param("sysId") Long id);
 
+  @Query(value = "SELECT * FROM stars ORDER BY date_instantiated DESC LIMIT 1", nativeQuery = true)
+  Optional<Star> findLastCreatedStar();
+
   Optional<Star> findById(Long id);
 }

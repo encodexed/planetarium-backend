@@ -24,6 +24,10 @@ public class StarService {
     return this.starRepository.findAll();
   }
 
+  public Star getLastCreatedStar() {
+    return this.starRepository.findLastCreatedStar().orElse(null);
+  }
+
   public Star createStar() throws FileNotFoundException {
     Star starBlueprint = StarUtilities.generateRandomStar();
     return this.starRepository.save(starBlueprint);

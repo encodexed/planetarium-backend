@@ -17,6 +17,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "stars")
 @Getter
@@ -50,6 +52,9 @@ public class Star {
   @Column
   private float solar_radii;
 
+  @Column(name = "date_instantiated")
+  private Date dateInstantiated;
+
   // Custom Constructors
 
   public Star(String name, StellarClass stellarClass) {
@@ -57,7 +62,6 @@ public class Star {
     this.stellar_class = stellarClass;
   }
 
-  // Omits Id field in construction
   public Star(
     String name,
     StellarClass stellarClass,
@@ -70,5 +74,6 @@ public class Star {
     this.surface_temperature_k = surfaceTemperatureK;
     this.solar_masses = solarMasses;
     this.solar_radii = solarRadii;
+    this.dateInstantiated = new Date();
   }
 }
